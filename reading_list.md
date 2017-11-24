@@ -11,6 +11,11 @@
 * https://research.googleblog.com/2017/11/automl-for-large-scale-image.html
 * https://arxiv.org/pdf/1707.07012.pdf
 
+# Look into Volta
+* https://linustechtips.com/main/topic/826386-hot-chips-2017-a-closer-look-at-nvidias-volta/
+* http://www.tomshardware.com/news/nvidia-volta-gv100-gpu-ai,35297.html
+
+
 
 考虑一个监督学习问题，即使用带标签的训练样本 $(x^{(i)}, y^{(i)})$ 。神经网络给出一种定义复杂非线性假设的形式 $h_{W,b}(x)$ ，该形式有参数 $W, b$ ，可被用来拟合数据。  
 
