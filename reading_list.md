@@ -16,6 +16,16 @@
 * http://www.tomshardware.com/news/nvidia-volta-gv100-gpu-ai,35297.html
 
 
+#  Reading List Dec. 2nd. 2017
+##
+# GNU C attribute and its discussion on linuxquestions.org
+* https://www.linuxquestions.org/questions/programming-9/linux-linking-archive-static-library-with-shared-dynamic-library-467565/
+* http://www.cnblogs.com/astwish/p/3460618.html
+
+#  Misc (about compilation, whole-archive) 
+* https://stackoverflow.com/questions/805555/ld-linker-question-the-whole-archive-option
+
+
 
 考虑一个监督学习问题，即使用带标签的训练样本 $(x^{(i)}, y^{(i)})$ 。神经网络给出一种定义复杂非线性假设的形式 $h_{W,b}(x)$ ，该形式有参数 $W, b$ ，可被用来拟合数据。  
 
