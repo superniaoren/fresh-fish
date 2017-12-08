@@ -25,6 +25,24 @@
 #  Misc (about compilation, whole-archive) 
 * https://stackoverflow.com/questions/805555/ld-linker-question-the-whole-archive-option
 
+# Reading List Dec. 8th. 2017
+##
+# AMD tool chanin, include tencil, isa
+* https://gpuopen.com/amd-vega-instruction-set-architecture-documentation/
+* https://github.com/ROCmSoftwarePlatform/Tensile/tree/master/Tensile
+* https://gpuopen.com/amd-gcn-assembly-cross-lane-operations/  
+第三条很trick，或者细节太多，当需要仔细优化的时候，可以再细细研读；
+
+# Openai Blcok Sparse, code and blog
+* https://github.com/openai/blocksparse
+* https://blog.openai.com/block-sparse-gpu-kernels/
+
+# Intel Coach RL framework and Its lake crest processor
+* https://www.intelnervana.com/reinforcement-learning-coach-intel/
+* https://www.intelnervana.com/intel-nervana-neural-network-processor-architecture-update/
+* https://www.intelnervana.com/flexpoint-numerical-innovation-underlying-intel-nervana-neural-network-processor/
+最后一条，是我最喜欢的一篇
+
 
 
 考虑一个监督学习问题，即使用带标签的训练样本 $(x^{(i)}, y^{(i)})$ 。神经网络给出一种定义复杂非线性假设的形式 $h_{W,b}(x)$ ，该形式有参数 $W, b$ ，可被用来拟合数据。  
