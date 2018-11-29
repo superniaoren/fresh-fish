@@ -39,6 +39,23 @@ pg.draw.line(windowSurface, blue, (60, 60), (120, 60), 4)
 pg.draw.line(windowSurface, red,  (120, 60), (180, 60), 5)
 pg.draw.line(windowSurface, black, (120, 60), (120, 120), 6)
 
+# add a blue circle
+#pg.draw.circle(windowSurface, blue, (300, 50), 20, 1)
+pg.draw.circle(windowSurface, blue, (300, 50), 40, 0)
+
+# add an ellipse 
+pg.draw.ellipse(windowSurface, red, (300, 200, 80, 40), 1)
+
+# draw the text's background 
+pg.draw.rect(windowSurface, red, (textRect.left + 100, textRect.top + 50, textRect.width + 40, textRect.height + 40))
+
+# get a pixel array, hard to find it 
+pixArray = pg.PixelArray(windowSurface)
+pixArray[20][380] = black
+del pixArray
+
+# draw the text 
+windowSurface.blit(text, textRect)
 
 
 # draw  the winodw onto the screen
@@ -48,6 +65,6 @@ pg.display.update()
 # [zoo, deprecated/error:] or else, the window disapear soon
 while True:
     for event in pg.event.get():
-        if event.type == QUIT:
+        if event.type == pg.QUIT or event.type == pg.KEYDOWN:
             pg.quit()
             sys.exit()
