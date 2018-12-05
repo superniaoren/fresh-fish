@@ -7,8 +7,8 @@ import pygame as pg
 pg.init()
 
 # create the window 
-WindowWidth = 400
-WindowHeight = 300
+WindowWidth = 500
+WindowHeight = 500
 windowSurface = pg.display.set_mode((WindowWidth, WindowHeight), 0, 32)
 pg.display.set_caption("Demo of Animation")
 
@@ -18,7 +18,7 @@ UpRight = 'upright'
 DownLeft = 'downleft'
 DownRight = 'downright'
 
-MoveSpeed = 4
+MoveSpeed = 1
 
 # set up the colors
 white = (255, 255, 255)
@@ -29,8 +29,9 @@ blue = (0, 0, 255)
 
 # set up the boxes
 box_1 =  {'rect': pg.Rect(300, 80, 50, 110), 'color': red, 'direct': UpRight}
+box_2 =  {'rect': pg.Rect(100, 100, 30, 30), 'color': green, 'direct': DownLeft}
 
-boxes = [box_1 ]
+boxes = [box_1, box_2 ]
 
 # run the main loop
 while True:
@@ -44,6 +45,46 @@ while True:
     windowSurface.fill(white)
 
     # TODO: add the box move 
+    for b in boxes:
+        if b['direct'] == DownLeft:
+            b['rect'].left -= MoveSpeed
+            b['rect'].top  += MoveSpeed
+        elif b['direct'] == UpRight:
+            b['rect'].left += MoveSpeed
+            b['rect'].top  -= MoveSpeed
+        elif b['direct'] == UpLeft:
+            b['rect'].left -= MoveSpeed
+            b['rect'].top  -= MoveSpeed
+        elif b['direct'] == DownRight:
+            b['rect'].left += MoveSpeed
+            b['rect'].top  += MoveSpeed
+        # check whether the box has moved out of the window
+        if b['rect'].top < 0:
+            # the box has moved past the top
+            if b['direct'] == UpLeft:
+                b['direct'] = DownLeft
+            elif b['direct'] == UpRight:
+                b['direct'] = DownRight
+        if b['rect'].bottom > WindowHeight:
+            if b['direct'] == DownLeft:
+                b['direct'] = UpLeft
+            elif b['direct'] == DownRight:
+                b['direct'] = UpRight
+        if b['rect'].left < 0:
+            if b['direct'] == UpLeft:
+                b['direct'] = UpRight
+            elif b['direct'] == DownLeft:
+                b['direct'] = DownRight
+        if b['rect'].right > WindowWidth:
+            if b['direct'] == UpRight:
+                b['direct'] = UpLeft
+            elif b['direct'] == DownRight:
+                b['direct'] = DownLeft
+
+        # re-draw the boxes
+        pg.draw.rect(windowSurface, b['color'], b['rect'])
+            
+            
 
     # draw the window onto the screen
     pg.display.update()
