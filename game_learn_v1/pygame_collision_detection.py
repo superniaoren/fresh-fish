@@ -92,6 +92,12 @@ while True:
             player.bottom += moveSpeed
         # draw player
         pg.draw.rect(windowSurface, black, player)
+    
+        # check the collision
+        for food in foods:
+        #for food in foods[:]:
+            if player.colliderect(food):
+                foods.remove(food)
 
         # draw foods
         for i in range(len(foods)):
