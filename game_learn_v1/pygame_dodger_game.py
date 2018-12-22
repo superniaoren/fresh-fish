@@ -85,7 +85,8 @@ while True:
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 terminate()
-            elif event.type == pg.KEYDOWN:
+            #elif event.type == pg.KEYDOWN:
+            if event.type == pg.KEYDOWN:
                 if event.key == pg.K_z:
                     reverseCheat = True 
                 elif event.key == pg.K_x:
@@ -102,7 +103,8 @@ while True:
                 elif event.key == pg.K_DOWN or event.key == pg.K_s:
                     moveUp = False
                     moveDown = True
-            elif event.type == pg.KEYUP:
+            #elif event.type == pg.KEYUP:
+            if event.type == pg.KEYUP:
                 if event.key == pg.K_z:
                     reverseCheat = False
                     score = 0
@@ -119,20 +121,24 @@ while True:
                     moveUp = False
                 elif event.key == pg.K_DOWN or event.key == pg.K_s:
                     moveDown = False
-            elif event.type == pg.MOUSEMOTION:
+            #elif event.type == pg.MOUSEMOTION:
+            if event.type == pg.MOUSEMOTION:
                 # move the player to the cursor
                 playerRect.centerx = event.pos[0]
                 playerRect.centery = event.pos[1]
             # add new baddies 
             if not reverseCheat and not slowCheat:
                 baddieAddCounter += 1
+                #print("baddie Add counter = {}".format(baddieAddCounter))
             if baddieAddCounter == addNewBaddieRate:
                 baddieAddCounter = 0
                 baddieSize = random.randint(baddieMinSize, baddieMaxSize)
-                newBaddie = {'rect': pg.Rect(random.randint(0, WindowWidth - baddieSize), 0 - baddieSize, baddieSize, baddieSize), 
+                newBaddie = {'rect': pg.Rect(random.randint(0, WindowWidth - baddieSize), \
+                                             0 - baddieSize, baddieSize, baddieSize), 
                              'speed': random.randint(baddieMinSpeed, baddieMaxSpeed),
                              'surface': pg.transform.scale(baddieImage, (baddieSize, baddieSize)), }
                 baddies.append(newBaddie)
+                #print(" == {}, baddie Add counter = {}".format(addNewBaddieRate,baddieAddCounter))
         # move the player
         if moveLeft and playerRect.left > 0:
             playerRect.move_ip(-1 * playerMoveRate, 0)
