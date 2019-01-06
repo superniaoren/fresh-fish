@@ -1,4 +1,8 @@
-import os, sys, subprocess
+import os, sys, time, subprocess
+
+def run_sleep(period):
+    proc = subprocess.Popen(['sleep', str(period)])
+    return proc
 
 proc = subprocess.Popen(
         ['echo', 'greetings from the child process.'],
@@ -20,3 +24,17 @@ while proc.poll() is None:
         break
 
 print('Exit status ', proc.poll())
+
+print('-' * 60)
+start = time.time()
+procs = []
+
+for i in range(10):
+    proc = run_sleep(i * 0.01)
+    procs.append(proc)
+
+for proc in procs:
+    proc.communicate()
+
+end = time.time()
+print("finish the proc list in %3.f secs" % (end - start))
