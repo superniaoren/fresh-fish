@@ -14,7 +14,7 @@ def run_openssl(data):
 
 def run_md5(data):
     proc = subprocess.Popen(
-            ['md5'],
+            ['md5sum'],
             stdin = data,
             stdout = subprocess.PIPE)
     return proc
@@ -24,13 +24,20 @@ def run_md5(data):
 if __name__ == '__main__':
     print(__name__)
     
-    procs = []
+    ssl_procs = []
+    md5_procs = []
     for _ in range(3):
         data = os.urandom(10)
-        proc = run_openssl(data)
-        procs.append(proc)
+        ssl_proc = run_openssl(data)
+        ssl_procs.append(ssl_proc)
+        # [zoo] here establish the connection
+        md5_proc = run_md5(ssl_proc.stdout)
+        md5_procs.append(md5_proc)
 
-    for proc in procs:
+    for proc in ssl_procs:
         out, err = proc.communicate()
         print("pid = {}".format(proc.pid))
         print(out[-10 : ])
+    for proc in md5_procs:
+        out, err = proc.communicate()
+        print(out.strip())
