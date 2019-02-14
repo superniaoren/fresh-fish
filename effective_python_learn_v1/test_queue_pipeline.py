@@ -38,8 +38,36 @@ class worker(Thread):
                 item = self.in_queue.get()
             except IndexError:
                 #print("met IndexError")
-                sleep(0.01)
+                time.sleep(0.01)
             else:
                 result = self.func(item)
                 self.out_queue.put(result)
                 self.work_done += 1
+
+def download(object):
+    print('download object')
+
+def resize(object):
+    print('resize object')
+    
+def upload(object):
+    print('upload object')
+
+
+if __name__ == '__main__':
+    download_queue = myQueue()
+    resize_queue = myQueue()
+    upload_queue = myQueue()
+    done_queue   = myQueue()
+    threads = [
+        worker(download, download_queue, resize_queue),
+        worker(resize, resize_queue, upload_queue),
+        worker(upload, upload_queue, done_queue)
+    ]
+    
+    for thread in threads:
+        thread.start()
+
+    for _ in range(20):
+        download_queue.put(object())
+
