@@ -8,6 +8,8 @@ from threading import Lock
 import collections
 from collections import deque
 
+from queue import Queue
+
 class myQueue(object):
     def __init__(self):
         self.items = deque()
@@ -56,6 +58,7 @@ def upload(object):
 
 if __name__ == '__main__':
     job_num = 20
+    # naive pipeline 
     download_queue = myQueue()
     resize_queue = myQueue()
     upload_queue = myQueue()
@@ -86,5 +89,4 @@ if __name__ == '__main__':
               " work done count ", total_work_done)
         for thread in threads:
             thread.join()
-
 
