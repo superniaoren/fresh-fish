@@ -14,6 +14,7 @@ job_num = 10
 
 def consume():
     global work_count
+    global queue
     while True: 
         queue.get()
         print('consumer get waiting 1')
