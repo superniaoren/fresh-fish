@@ -55,12 +55,15 @@ for thread in threads:
     
 for _ in range(10):
     download_queue.put(object())
+
+# close itself !
 download_queue.close()
+# join: wait to be consumed by the consumer queue 
 download_queue.join()
 
 resize_queue.close()
 resize_queue.join()
 
-#done_queue.close()
+done_queue.close()
 #done_queue.join()
 print(done_queue.qsize(), 'items closed ')
