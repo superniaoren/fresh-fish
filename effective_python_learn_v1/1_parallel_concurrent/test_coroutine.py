@@ -12,5 +12,6 @@ if __name__ == '__main__':
     for i in list_b:
         print(i)
 
-    # generators:
+    # generators: NOTE the difference between tuple and generator !!
+    # a = ('cc', 23) --> tuple;  b = (x * x for x in range(10)) -> generator
     
