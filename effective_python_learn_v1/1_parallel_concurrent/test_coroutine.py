@@ -161,8 +161,8 @@ if __name__ == '__main__':
     Transition = namedtuple('Transition', ('y', 'x', 'state'))
     TICK = object()
     
-    start_y = 10 
-    start_x = 2
+    start_y = 5 
+    start_x = 5
 
     print('\ntest count neighbours -----')
     count_it = count_neighbours(start_y, start_x)
