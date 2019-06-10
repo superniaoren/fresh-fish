@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 import contextlib
 from contextlib import contextmanager
 
@@ -62,6 +63,35 @@ class CtxFileMange_2(object):
         if self.file:
             self.file.close()
         
+# generator based
+@contextmanager
+def CtxTimer(tags=None):
+    try:
+        start = time.time()
+        # do some stuff:
+        # block by yield
+        yield tags
+    finally:
+        print(tags)
+        stop = time.time()
+        elapsed = (stop - start) * 1000.0 # ms
+        print('elpased time: %4.0f ms' % elapsed)
+    
+# class based
+class CtxTimer_2(object):
+    def __init__(self):
+        self.elpased = 0.
+        self.start = 0.
+        self.stop = 0.
+
+    def __enter__(self):
+        self.start = time.time()
+
+    def __exit__(self, exc_type, exc_val, exc_tb): 
+        self.stop = time.time()
+        self.elapsed = (self.stop - self.start) * 1000.0
+        print('elpased time: %4.0f ms' % self.elapsed)
+        
 
 
 if __name__ == '__main__':
@@ -88,5 +118,15 @@ if __name__ == '__main__':
     with CtxFileMange_2('./ctx_filename_2.txt', 'w') as f:
         f.write('xuehua.cat\n')
         f.write('daidai.cat\n')
+
+
+    with CtxTimer(tags={'zoo': 'timer'}) as ct:
+        ct['fast'] = 'zero'
+        time.sleep(1)
+    
+    with CtxTimer_2() as ct:
+        print('do some stuff here')
+        time.sleep(1)
+
 
 
