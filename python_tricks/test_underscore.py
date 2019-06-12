@@ -21,6 +21,8 @@ class TestBase:
     def __method(self):
         print('2, __method call')
 
+# starts dunder vars would be named-mangling by Python interpreter
+# but variables surrounded by a dunder prefix and postfix are left unscathed.
 class MangledGlobal:
     def __init__(self):
         #self.__mangled = 99
@@ -28,6 +30,11 @@ class MangledGlobal:
     def mangle(self):
         return __mangled
         #return self.__mangled  # different
+
+class PrefixPostfixTest:
+    def __init__(self):
+        self.__rand_var__ = 44
+
 
 if __name__ == '__main__':
     tb = TestBase()
@@ -42,3 +49,14 @@ if __name__ == '__main__':
     mg = MangledGlobal()
     print(mg.mangle())
     print(dir(mg))
+
+    ppt = PrefixPostfixTest()
+    print(ppt.__rand_var__)
+    print(dir(ppt))
+
+    for i in range(2):
+        print('lolo')
+        for j in range(4):
+            print('hoho', j)
+    # NOTE: still be valid: j
+    print(j)
