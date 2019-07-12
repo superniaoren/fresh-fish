@@ -3,6 +3,12 @@
 def yell(text):
     return text.upper() + ' ..'
 
+def whisper(text):
+    return text.lower() + ' ..'
+
+def action(func):
+    act = func('Where did you sprint out?')
+    print(act)
 
 if __name__ == '__main__':
     # basic 
@@ -30,4 +36,8 @@ if __name__ == '__main__':
     print(funcs)
     for f in funcs:
         print(f, f('bye, yo'))
+
+    # functions can also be passed to other functions
+    action(yawl)
+    action(whisper)
     
