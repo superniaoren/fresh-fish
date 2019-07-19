@@ -37,6 +37,29 @@ def greet(input_str):
 def hello():
     return 'Heloha'
 
+## decorator with arguments (*args and **kwargs)
+def trace(func):
+    def wrapper(*args, **kwargs):
+        print(f'Trace: prior call func: {func.__name__}() '
+              f'with {args}, {kwargs}')
+        #org_results = func(args, kwargs) # wrong code: new * and **
+        org_results = func(*args, **kwargs)
+        print(f'Trace: post call func: {func.__name__}() '
+              f'returned {org_results!r}')
+        return org_results
+    return wrapper
+
+@trace
+def talk(name, line, best_band=None):
+    return f'{name}: {line}'
+
+## write debuggable decorators
+## docstring, func name, and parameter list 
+def ordinary(input):
+    """ ordinary func for debuggable decorators """
+    return "Britain: " + input
+
+
 if __name__ == '__main__':
     print('Decorators::')
     print('\t understanding decorator is a milestone for any Python programmer.')
@@ -58,8 +81,13 @@ if __name__ == '__main__':
     print(hello())
 
     # decorate functions that acccept arguments
-    
+    summer = talk('Hayato', 'Dont talk about Disco')    
+    band =  talk('Debugger', 'Learn PythonSnoopy', best_band= 'new pants')    
 
-
-
+    ## debuggable decorators
+    print(ordinary.__name__)
+    print(ordinary.__doc__)
+    decorated_ord = uppercase(ordinary)
+    print(decorated_ord.__name__)
+    print(decorated_ord.__doc__)
 
