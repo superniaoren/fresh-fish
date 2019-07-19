@@ -59,6 +59,20 @@ def ordinary(input):
     """ ordinary func for debuggable decorators """
     return "Britain: " + input
 
+## use functools.wraps in the decorators to copy over the lost metadata from
+## the undecorated function to the decorator closure.
+import functools
+## I do recommend you to use functools in decorators
+def awesome_low(func):
+    @functools.wraps(func)
+    def wrapper(input):
+        return func(input).upper()
+    return wrapper
+
+@awesome_low
+def greet(input_str):
+    """ return awesome low """
+    return input_str
 
 if __name__ == '__main__':
     print('Decorators::')
@@ -90,4 +104,7 @@ if __name__ == '__main__':
     decorated_ord = uppercase(ordinary)
     print(decorated_ord.__name__)
     print(decorated_ord.__doc__)
+
+    print(greet.__name__)
+    print(greet.__doc__)
 
