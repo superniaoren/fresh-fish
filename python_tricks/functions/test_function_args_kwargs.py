@@ -13,10 +13,13 @@ def mutable_foo(required, *args, **kwargs):
     new_args = args + (1001, )
     scott_foo(required, *new_args, **kwargs)
 
+## forwarding optional or keyward args.
 def trace(f):
     @functools.wraps(f)
     def decorated_func(*args, **kwargs):
         print(f, args, kwargs)
+        print("type of args: {}".format(type(args)))
+        print("type of kwargs: {}".format(type(kwargs)))
         ret = f(*args, **kwargs)
         print(ret)
     return decorated_func
