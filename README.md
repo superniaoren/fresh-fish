@@ -2,5 +2,7 @@
 
 # learn python hard way-x-th edition
 
-learn by hard-way ?
+'learn by hard-way'
+'python tricks'
+'effective python'
 
