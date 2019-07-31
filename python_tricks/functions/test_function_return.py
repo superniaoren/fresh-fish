@@ -1,4 +1,6 @@
-
+# programmers should know the ins and outs of the language they're working with
+# after all, code is communication
+# today's topic: implicit return statement
 def pretend(value):
     if value:
         return value
