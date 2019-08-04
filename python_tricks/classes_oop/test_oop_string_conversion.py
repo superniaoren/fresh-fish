@@ -1,4 +1,5 @@
 ##
+import datetime as dt
 
 class NonRepr:
     def __init__(self, beatles, click15):
@@ -30,8 +31,6 @@ class WithStrRepr:
 
     def __repr__(self):
         return f'__repr__:: YOUKU: {self.band_native}, my favorite.'
-        
-
     
 
 if __name__ == '__main__':
@@ -61,4 +60,13 @@ if __name__ == '__main__':
     # use built-in function
     print(repr(withstrrepr))
     print(repr(strrepr_list))  
+    print('-' * 40)
+
+    # object's __str__ function should be readable. It meant to return a concise textual 
+    # representation for human consumption
+    # with __repr__, the result should be unambiguous. The resulting string is intended 
+    # more as a debugging aid for developers.
+    today = dt.date.today()
+    print('str(today): ', str(today))
+    print('repr(today): ', repr(today))
     print('-' * 40)
