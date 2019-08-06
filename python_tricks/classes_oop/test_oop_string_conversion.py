@@ -31,8 +31,21 @@ class WithStrRepr:
 
     def __repr__(self):
         return f'__repr__:: YOUKU: {self.band_native}, my favorite.'
-    
 
+class WithRepr:
+    def __init__(self, 
+                 beatles : str, 
+                 click15 : str):
+        self.band_britan = beatles
+        self.band_native = click15
+
+    # note, here use the !r conversion flag to make sure the output string 
+    # use repr(self.band_britan) and repr(self.band_native) instead of str(self.band_britan)
+    # and str(self.band_native)
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'(UK)band({self.band_britan!r}), (CN)band({self.band_native!r}))')
+    
 if __name__ == '__main__':
     print("string conversion: every class needs a __repr__ : ")
 
@@ -70,3 +83,14 @@ if __name__ == '__main__':
     print('str(today): ', str(today))
     print('repr(today): ', repr(today))
     print('-' * 40)
+
+    # if U don't add __str__ method, Python automatically falls back on the result of 
+    # __repr__ when looking for __str__.
+    # so, U are recommended to add at least a __repr__ method to your classes.
+    withrepr = WithRepr('Pekings', 'Rhino')
+    print(withrepr)
+    print('-' * 40)
+    
+    # python2.x, __str__ return bytes, whereas __unicode__ returns characters
+    # str() call __str__, unicode() built-in calls __unicode__ if it exits.
+    # e.f. return unicode(self).encode('utf-8')
