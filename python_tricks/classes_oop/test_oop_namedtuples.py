@@ -1,5 +1,6 @@
 # named tuple, create immutable class
 from collections import namedtuple
+import json
 
 if __name__ == "__main__":
     # 1, ordinary built-in tuple
@@ -60,7 +61,7 @@ if __name__ == "__main__":
     print(bk.theExcellent)
     print(bk.theExcellent())
 
-    # 5, namedtuples' __fields property; you can use 'Class' name or object
+    # 5, namedtuples' _fields property; you can use 'Class' name or object
     print("Huangdouduo's fields: ", bk._fields)
     print("Huangdouduo's fields: ", BeesKnees._fields)
     print("Food's fields: ", Food._fields)
@@ -68,3 +69,16 @@ if __name__ == "__main__":
     CNFood = namedtuple("Whatevername", Food._fields + ('dumplin', 'burgers'))
     print("CNFood's fields: ", CNFood._fields)
     
+    # 6, namedtuples' built-in helper methods all start with underscore, 
+    # but not meanning they're private
+    print("Huangdouduo's asdict: bk: ", bk._asdict())  # use object, now class def.
+    print(json.dumps(bk._asdict()))
+    #bk._replace(Bees=-999)  # NOTE: can only operate on namedtuple BeesKnees's elements
+    bk._replace(Vast=13432)  # NOTE: seems '_replace' not work !!!
+    print(*bk)
+    breakfast._replace(muffim=0.12356)
+    print(*breakfast)
+
+    # 7, another method: _make
+    lunch = Food._make(["I", "have", 'not', 'got', 'a thing'])
+    print("lunch food: ", *lunch)
