@@ -71,7 +71,7 @@ if __name__ == "__main__":
     
     # 6, namedtuples' built-in helper methods all start with underscore, 
     # but not meanning they're private
-    print("Huangdouduo's asdict: bk: ", bk._asdict())  # use object, now class def.
+    print("Huangdouduo's asdict: bk: ", bk._asdict())  # use instance, not class def.
     print(json.dumps(bk._asdict()))
     #bk._replace(Bees=-999)  # NOTE: can only operate on namedtuple BeesKnees's elements
     bk._replace(Vast=13432)  # NOTE: seems '_replace' not work !!!
