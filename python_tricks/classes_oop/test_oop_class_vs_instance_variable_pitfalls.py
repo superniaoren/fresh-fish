@@ -73,7 +73,8 @@ if __name__ == '__main__':
     counter_4 = Counter(1)
     print(counter_4.num_counter, counter_4.__class__.num_counter)
 
-    # bug 2
+    # bug 2, BuggyCounter() is an instance, while BuggyCounter is just the class
+    # hencefore you can find the counter of class stay unchanged. 
     print('buggy counte 2: ')
     print(BuggyCounter.num_counter)
     print(BuggyCounter().num_counter)# here return the instance 'num_counter'
@@ -82,5 +83,7 @@ if __name__ == '__main__':
     print(BuggyCounter.num_counter)
     print(BuggyCounter().num_counter)
 
-
+    # where's the bug from: class variables can be 'shadowed' by instance
+    # variable of the same name. it;s easy to (accidently) override 
+    # class variable in a way that introduces bugs and odd behavior.
 
