@@ -20,6 +20,7 @@ class EFClass:
 
     # this type of method doesn't take a self or a cls parameter, although, it can be made to accept 
     # an arbitrary number of other parameters.
+    # confirm that static methods can neither access the object instance state nor the class state.
     @staticmethod
     def staticmethod():
         return 'static method '
@@ -41,4 +42,4 @@ if __name__ == '__main__':
     print('efc static: ', EFClass.staticmethod())
     #print('efc static: ', EFClass.staticmethod(efc))
 
-    #
+    # 
