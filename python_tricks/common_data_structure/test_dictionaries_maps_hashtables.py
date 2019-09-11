@@ -2,7 +2,8 @@
 # basic common data structure
 
 if __name__ == '__main__':
-    # dict
+    # plane dict
+    print('test basic dict: ')
     postIds = {
         'tiger': 9527,
         'wusong': 7295,
@@ -29,3 +30,7 @@ if __name__ == '__main__':
     # immutable types like strings and numbers are hashable and work well
     # as dictionary keys. 'tuple' objects can also be used as dictionary
     # keys as long as as they contain ONLY hashable types themselves.
+
+    from collection import OrderedDict
+    
+    
