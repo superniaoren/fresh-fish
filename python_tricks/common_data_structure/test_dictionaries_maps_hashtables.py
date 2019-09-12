@@ -31,6 +31,17 @@ if __name__ == '__main__':
     # as dictionary keys. 'tuple' objects can also be used as dictionary
     # keys as long as as they contain ONLY hashable types themselves.
 
-    from collection import OrderedDict
+    print('test ordered dict: ')
+    from collections import OrderedDict
     
+    od = OrderedDict(two=1, one=3, three=4)
+    print("ordered od: ", od)
+    #print("ordered dict val: ", od['zoo'])
+    print("ordered od.keys: ", od.keys())
     
+    from collections import defaultdict
+    dd = defaultdict(list)
+    print("default dict: ", dd)
+    print("default dict val: ", dd['zoo'])
+
+
