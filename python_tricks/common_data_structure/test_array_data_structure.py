@@ -10,6 +10,8 @@ if __name__ == '__main__':
     print(arr)
     arr.append(3.14115)
     print(arr)
+    tuple_list = tuple(arr)
+    print("list2tuple: ", tuple_list)
     
     print('-' * 20, " tuple, immutable containers ")
     #tpl = ('bagger', 'vanish', 'puff')
@@ -21,6 +23,8 @@ if __name__ == '__main__':
     tpl = tpl + (33.0,)  #  can only concatenate tuple (not "float") to tuple
     tpl = tpl + (33,)  # so, must use (int/float,), not (int/float)
     print(tpl)
+    list_tpl = list(tpl)
+    print("tuple2list: ", list_tpl)
 
     print('-' * 20, " array, basic typed arrays")
     tarr = array.array('f', [-9.0, 8.0, -7.0, 6.0])
