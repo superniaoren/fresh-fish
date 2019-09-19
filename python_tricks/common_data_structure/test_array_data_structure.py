@@ -44,3 +44,30 @@ if __name__ == '__main__':
     print('back to immutable string: ', marr)
     #del(marr[0])
     print("strings are recursivee data structures: ", type(sarr), type(sarr[0]))
+
+    # unsigned char, [0, 255]
+    print('-' * 20, " bytes, immutable arrays of single bytes")
+    barr = bytes((255, 254))
+    print('immutable: ', barr)
+    #barr[0]
+    #del(barr[1])
+
+    print('-' * 20, " bytearray, dedicated mutable arrays of single bytes")
+    darr = bytearray((2, 24, 241))
+    print('bad repr: ', darr)
+    darr[1] = 255
+    print('mutable: ', darr)
+    del(darr[2])
+    print('mutable: ', darr)
+    darr.append(23)
+    print('mutable: ', darr)
+    #darr[2] = 'should-not-str'  # integer is required
+    #darr[2] = 256  # range (0, 256)
+    carr = bytes(darr)
+    print('can be converted back to into bytes:')
+    print(carr)
+    bdarr = bytearray(carr)
+    print('can be converted back to into bytearray:')
+    print(bdarr)
+
+
