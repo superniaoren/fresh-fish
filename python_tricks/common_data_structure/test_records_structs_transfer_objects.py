@@ -83,3 +83,31 @@ if __name__ == '__main__':
     del xsimple.best_elbum
     print('SimpleNamespace is mutable: ', xsimple)
 
+
+
+    print('\n', '-' * 40, " collections.namedtuple, Convenient Data Objects")
+    from collections import namedtuple
+    from sys import getsizeof
+    xNamed = namedtuple('Class_Name', 'drummer vocla bass keyboards')
+    print('type: ', type(xNamed))
+    xband = xNamed('hayato', 'peng lei', 'zhao meng', 'pang kuan')
+    print('type: ', type(xband))
+    print('xband namedtuple: ', xband)
+    print('xband.bass= ', xband.bass)
+
+
+
+    print('\n', '-' * 40, " typing.NamedTuple, Improved Namedtuples")
+    from typing import NamedTuple
+    class xNT(NamedTuple):
+        band: str
+        drummer: str
+        vocal: str
+        bass: str
+
+    hdge = xNT('hedgehog', 'shi lu', 'zi jian', 'yi fan')
+    print(hdge)
+    # just type hint, no forced check
+    hdge = xNT('hedgehog', 99999, 'zi jian', 'yi fan')
+    print(hdge)
+
