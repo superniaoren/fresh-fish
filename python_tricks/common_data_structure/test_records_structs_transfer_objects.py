@@ -58,4 +58,28 @@ if __name__ == '__main__':
 
 
 
-    print('\n', '-' * 40, " custom class ")
+    print('\n', '-' * 40, " struct.Struct, serialized C structs")
+    from struct import Struct
+    xstruct = Struct('i?f')
+    xdata = xstruct.pack(1999999, 'ssd', -3.145339)
+    print('xdata(serialized): ', xdata)
+    ydata = xstruct.unpack(xdata)
+    print("ydata(unpacked): ", ydata)
+    print('type of unpacked ydata: ', type(ydata))
+    print(ydata[1])
+    
+    
+
+    print('\n', '-' * 40, " types.SimpleNamespace, Fancy, Attribute Access")
+    from types import SimpleNamespace
+    xsimple = SimpleNamespace(band='new pants',
+                              vocal="peng lei",
+                              bass='zhao meng',
+                              keyboarder='pang kuan',
+                              drummer='hayato',
+                              best_elbum='tiger & dragon')
+    print('SimpleNamespace has default repr: ', xsimple)
+    xsimple.band='new pants forever'
+    del xsimple.best_elbum
+    print('SimpleNamespace is mutable: ', xsimple)
+
