@@ -21,5 +21,31 @@ if __name__ == '__main__':
     print('type of mygenerator: ', type(mygenerator))
     for i in mygenerator:
         print(i)
+    # you can NOT iterate the generator a second time since generator can only use once.
+    # for i in mygenerator: ERROR
+
+    # CLEARLY: 
+    # `yield` is a keyword that like `return`, except the function will return a generator.
+    def CreateGenerator():
+        mylist = range(4)
+        print('he i,   h  ei')
+        for x in mylist:
+            yield x * x * x
+        print('ha o,   h  a_')
+
+    mygenerator = CreateGenerator()
+    print('type of the created object: ', type(mygenerator))
+    print('the object is: ', mygenerator)
+    for i in mygenerator:
+        print(i)
+
+    # NOTE: to master `yield`, you must understand that when you call the function (e.f. CreateGenerator),
+    # the code you have written in the function body does NOT run. 
+    # The function only return a generator, which is a bit tricky.
+    # NOTE: now the hard part: 
+    #      the 1st time the `for` calls the generator created from you function, it will run the code in 
+    #      your function 
+
+
 
 
