@@ -68,5 +68,23 @@ if __name__ == '__main__':
 
     # the generator is considered empty once the function run, but it does NOT hit `yield` anymore. 
 
+    # control a generator exhaustion
+    class BOC():
+        crisis = False
+        def create_atm(self):
+            while self.crisis:
+                yield "RMB 100"
+                #print ('RMB 100')
 
-
+    haidian_boc = BOC()
+    corner_street_atm = haidian_boc.create_atm()
+    #print(next(corner_street_atm))
+    try:
+        print(corner_street_atm.__next__())
+    except:
+        haidian_boc.crisis = True
+        another_atm = haidian_boc.create_atm()
+        #print(corner_street_atm.__next__())  # in corner_street_atm, crisis is still False
+        print(another_atm.__next__())
+        print(next(another_atm))
+    
