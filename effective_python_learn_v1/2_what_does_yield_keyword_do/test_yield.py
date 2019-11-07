@@ -88,3 +88,30 @@ if __name__ == '__main__':
         print(another_atm.__next__())
         print(next(another_atm))
     
+    # MORE about understanding keyword $yield: 
+    #When you see a function with yield statements, apply this easy trick to understand what will happen:
+
+    #   1, Insert a line result = [] at the start of the function.
+    #   2, Replace each yield expr with result.append(expr).
+    #   3, Insert a line return result at the bottom of the function.
+    #   4, Yay - no more yield statements! Read and figure out code.
+    #   5, Compare function to original definition.
+    def yield123():
+        yield 1
+        yield 2
+        yield 3
+    iter_123 = yield123()
+    print(next(iter_123))
+    print(next(iter_123))
+    print(next(iter_123))
+    iter_123_ = yield123()
+    print(next(iter_123_))
+    print(iter(iter_123_))
+    print(next(iter_123_))
+    #print(next(iter_123_))
+    print('bad usage: ')
+    print(next(yield123()))  # only print 1
+    print(next(yield123()))  # only print 1
+    print(next(yield123()))  # only print 1
+
+    # And, do NOT confuse your iterator 
