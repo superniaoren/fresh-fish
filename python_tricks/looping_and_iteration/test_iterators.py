@@ -15,6 +15,8 @@ class RepeaterIterator:
 
     def __next__(self):
         if self.counter < 10:
+            #self.counter += 1
+            print(self.counter)
             return self.source.value
         else:
             self.counter += 1
