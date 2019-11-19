@@ -1,6 +1,8 @@
 ## known as 'beautiful iterators'
 ##
 
+# in the 1st naive examples, Repeater and RepeaterIterator work together
+# it can be viewed as __iter__ and __next__ work together.
 class Repeater:
     def __init__(self, value):
         self.value = value
@@ -14,17 +16,29 @@ class RepeaterIterator:
         self.counter = 0
 
     def __next__(self):
+        self.counter += 1
         if self.counter < 10:
             #self.counter += 1
             print(self.counter)
             return self.source.value
         else:
-            self.counter += 1
+            #self.counter += 1
+            return self.counter
+        # return None by default
 
 if __name__ == '__main__':
     print('learn iterators : ') 
 
     repeater = Repeater('Tatoon')
+    # a infinite loop
     for item in repeater:
+        print(item)
+        break  # skip the endless loop
+
+    # behind-scenes. Note the communications between repeater and Riterators:
+    print('=' * 40)
+    iterator = repeater.__iter__()
+    while True:
+        item = iterator.__next__()
         print(item)
 
