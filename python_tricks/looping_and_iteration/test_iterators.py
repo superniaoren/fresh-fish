@@ -26,6 +26,16 @@ class RepeaterIterator:
             return self.counter
         # return None by default
 
+class SingleRepeater:
+    def __init__(self, value):
+        self.value = value
+   
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        return self.value
+
 if __name__ == '__main__':
     print('learn iterators : ') 
 
@@ -37,8 +47,17 @@ if __name__ == '__main__':
 
     # behind-scenes. Note the communications between repeater and Riterators:
     print('=' * 40)
-    iterator = repeater.__iter__()
+    #iterator = repeater.__iter__()
+    # OR:
+    iterator = iter(repeater)
     while True:
-        item = iterator.__next__()
+        #item = iterator.__next__()
+        # or: 
+        item = next(iterator)
         print(item)
+        break  # [zoo] for test
 
+    
+    repeater = SingleRepeater("Hayato")
+    for item in repeater:
+        print(item)
