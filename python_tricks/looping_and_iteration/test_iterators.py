@@ -3,26 +3,24 @@
 
 # in the 1st naive examples, Repeater and RepeaterIterator work together
 # it can be viewed as __iter__ and __next__ work together.
-class Repeater:
+class TwoPhaseRepeater:
     def __init__(self, value):
         self.value = value
     
     def __iter__(self):
-        return RepeaterIterator(self)
+        return TwoPhaseRepeaterIterator(self)
 
-class RepeaterIterator:
+class TwoPhaseRepeaterIterator:
     def __init__(self, source):
         self.source = source
         self.counter = 0
 
     def __next__(self):
         self.counter += 1
-        if self.counter < 10:
-            #self.counter += 1
+        if self.counter > 10:
             print(self.counter)
-            return self.source.value
+            return StopIteration
         else:
-            #self.counter += 1
             return self.counter
         # return None by default
 
@@ -39,7 +37,7 @@ class SingleRepeater:
 if __name__ == '__main__':
     print('learn iterators : ') 
 
-    repeater = Repeater('Tatoon')
+    repeater = TwoPhaseRepeater('TwoPhase: Tatoon')
     # a infinite loop
     for item in repeater:
         print(item)
@@ -53,11 +51,15 @@ if __name__ == '__main__':
     while True:
         #item = iterator.__next__()
         # or: 
-        item = next(iterator)
+        try:
+            item = next(iterator)
+            #print(item)
+        except StopIteration:
+            break
         print(item)
-        break  # [zoo] for test
 
     
-    repeater = SingleRepeater("Hayato")
+    repeater = SingleRepeater("Single: Hayato")
     for item in repeater:
         print(item)
+        break # [zoo] for test
