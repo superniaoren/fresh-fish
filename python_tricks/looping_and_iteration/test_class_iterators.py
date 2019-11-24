@@ -14,24 +14,30 @@ class TwoPhaseRepeaterIterator:
     def __init__(self, source):
         self.source = source
         self.counter = 0
+        self.max_repeats = 10
 
     def __next__(self):
         self.counter += 1
-        if self.counter > 10:
+        if self.counter > self.max_repeats:
             print(self.counter)
-            return StopIteration
+            raise StopIteration  # use raise, not return
         else:
             return self.counter
         # return None by default
 
 class SingleRepeater:
-    def __init__(self, value):
+    def __init__(self, value, max_repeats):
         self.value = value
+        self.max_repeats = max_repeats
+        self.counter = 0
    
     def __iter__(self):
         return self
 
     def __next__(self):
+        if self.counter >= self.max_repeats:
+            raise StopIteration
+        self.counter += 1
         return self.value
 
 if __name__ == '__main__':
@@ -41,7 +47,7 @@ if __name__ == '__main__':
     # a infinite loop
     for item in repeater:
         print(item)
-        break  # skip the endless loop
+        #break  # skip the endless loop
 
     # behind-scenes. Note the communications between repeater and Riterators:
     print('=' * 40)
@@ -58,8 +64,13 @@ if __name__ == '__main__':
             break
         print(item)
 
-    
-    repeater = SingleRepeater("Single: Hayato")
-    for item in repeater:
+    print('=' * 40)
+    repeater = SingleRepeater("Single: Hayato", 5)
+    #for item in repeater:
+    #    print(item)
+    while True:
+        try:
+            item = next(repeater)
+        except StopIteration:
+            break
         print(item)
-        break # [zoo] for test
