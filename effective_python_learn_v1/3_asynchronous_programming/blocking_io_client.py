@@ -12,7 +12,8 @@ if __name__ == '__main__':
     sock = socket.socket()
 
     host = socket.gethostname()
-    sock.connect((host, 8868))
+    port = 8868
+    sock.connect((host, port))
 
     data = b"LamaTemple" * 10 * 1024
     assert sock.send(data)

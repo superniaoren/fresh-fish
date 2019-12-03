@@ -19,12 +19,13 @@ if __name__ == '__main__':
 
     while True:
         conn, attr = sock.accept()
-        data = sock.recv(1024)
+        #data = sock.recv(1024)
+        data = conn.recv(1024)
         while data:
             print(data)
-            data = sock.recv(1024)
+            #data = sock.recv(1024)
+            data = conn.recv(1024)
         print("[server] Data have been received.")
         conn.close()
         break 
-    
     
