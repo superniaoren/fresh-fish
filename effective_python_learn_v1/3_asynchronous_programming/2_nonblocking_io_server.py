@@ -9,6 +9,7 @@ if __name__ == '__main__':
     sock.bind((host, port))
     sock.listen(5)
 
+    # busy-wait, polling readiness mechanism
     while True:
         conn, attr = sock.accept()
         data = conn.recv(1024)
